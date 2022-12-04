@@ -1,18 +1,24 @@
 # 과제개요
 전천후 작전수행을 위한 화상 이미지 노이즈 제거
-(Restoration, Denoising)
+(Restoration, Denoising)    
 이미지 영역|PSNR
 
 문제 정의
 주어진 이미지에 대하여 안개, 우천 등 기상상황으로 인하여 저하된 품질을 복원시키는 문제
 
+---
+
 # 평가지표
 PSNR (Peak Singal-to-Noise Ratio)
 
+---
 
 # 학습 내용
 ### 모델 선정
-- Transformer 계열(baseline) -> Resnet계열 모델 변경
+- Transformer 계열(Restormer) -> Resnet계열 모델 변경
+  - 참고 깃허브
+    - [Restormer](https://github.com/swz30/Restormer)
+    - [PRENet](https://github.com/csdwren/PReNet)
   - paper with code 를 보면 Sota모델(Transformer계열)과 이전 모델의 성능차이가 그닥 커 보이지 않았음
   - 데이터 셋 양이 적어 트렌스포머 계열에 맞지않음
   - 딥러닝이 아닌 머신러닝으로도 준수한 성능이 나올 정도의 Task였음
@@ -46,6 +52,8 @@ PSNR (Peak Singal-to-Noise Ratio)
 - 빗방울 제거
   - 
 
+---
+
 # 학습 결과 및 검증
 - Ansemble한 Pretrained model은 /workspace/Final_Submission/PReNet/logs/real/ 내에 모두 존재
   - net_iter1601.pth : SSIMLoss, batch_size=20, iteration=1600를 사용한 모델
@@ -72,6 +80,7 @@ PSNR (Peak Singal-to-Noise Ratio)
 - python=3.9.12        
 - numpy=1.21.5    
 
+---
 
 # 추가적인 시도
 - 데이터를 두개로 분류한 후 각각의 모델을 돌리고 앙상블을 시도
@@ -83,3 +92,25 @@ PSNR (Peak Singal-to-Noise Ratio)
   - 그 패턴을 만들어낸 필터 사이즈를 찾아 해당 필터 사이즈로 학습을 처리하면 성능이 높아질거라 예상.
   - 3x3 채널로 노이즈가 입혀졌다는건 파악했지만 시간 부족으로 더 이상 진행하지 못했음.
  
+---
+
+# 팀 회고
+
+### 잘한점
+- EDA를 통해 다음 단계를 분석하여 진행
+  - 모델의 특성을 파악하며 후처리 코드 작성
+  - 학습 결과 및 후처리 결과를 눈으로 확인, 자체적인 평가 지표를 통해 성능향상을 도모
+- 팀의 분위기
+  - 의사결정이 정확하고 근거가 있었으며 신속했다.
+  - 무박 2일임에도 불구하고 텐션유지
+  - 역할 분배가 깔끔하게 이루어졌으며 협업 또한 원활
+
+### 부족했던점 (아쉬운점)
+- 추가적인 어텐션 맵을 사용하지 않고 빗방울에 대한 특징을 뽑아내기에는 한계가 있었다. 이에 대한 테스트를 못해봐서 아쉬움
+- 초기 서버 설정에서 오류가 발생하여 시간을 너무 많이 소모했다.
+- 한 가지 모델만 사용했다.
+  - 준비한 모델이 많았지만 이를 더 완벽히 준비해왔다면 다양한 모델을 이용해 볼 수 있었을 듯
+- 대회 전 준비한 기법을 모두 사용해보지 못함
+  - 앙상블 방법의 다양성 부족
+  - 전처리
+  - Augmentation
