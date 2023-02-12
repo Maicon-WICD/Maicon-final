@@ -34,15 +34,15 @@ PSNR (Peak Singal-to-Noise Ratio)
 - resize
   - 학습 시 이미지를 256x256으로 리사이즈
   - 추론시에는 512x512사이즈로 추론 (Interpolation이 큰 영향을 준다고 생각함)
-- Loss 선택
-  - 평가지표에 맞는 Loss를 사용 => SIMM Loss v.s. PNSR Loss
-  - 결과를 비교해 보았을 때 SIMM Loss가 더 좋은 성능을 보였음
+- Loss 선택 -> 22.2 PSNR
+  - 평가지표에 맞는 Loss를 사용 => SIMM Loss v.s. PSNR Loss
+  - 결과를 비교해 보았을 때 PSNR Loss가 더 좋은 성능을 보였음
 
 ### Cut blur
 - SR, Denoised task에 효과적인 augmentation
 - 초기에는 좋은 성능을 보였으나 결과적으로 부정적인 영향을 끼침
 
-### Post-Processing
+### Post-Processing -> 24.3 PSNR 
 - color shift
   - 예측된 결과에서 짙은 초록색이 많이 검출되어 이를 보완하기 위해 사용
   - 색 범위를 활용하여 마스킹을 진행하고 해당 영역의 밝기를 키움
@@ -77,7 +77,7 @@ PSNR (Peak Singal-to-Noise Ratio)
   - `eda_process/image_diff.ipynb` 활용
 4. 추론 결과 분석 및 후처리
   - `da_process/Postprocess.ipynb` 활용
-5. 결과물 앙상블
+5. 결과물 앙상블 -> 25.1 PSNR
   - `eda_process/Ensemble.ipynb` 활용
 
 ---
