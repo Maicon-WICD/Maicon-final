@@ -24,9 +24,9 @@ parser.add_argument("--batch_size", type=int, default=20, help="Training batch s
 parser.add_argument("--epochs", type=int, default=100, help="Number of training epochs")
 parser.add_argument("--milestone", type=int, default=[30,50,80], help="When to decay learning rate")
 parser.add_argument("--lr", type=float, default=1e-3, help="initial learning rate")
-parser.add_argument("--save_path", type=str, default="/workspace/data/PReNet/logs/PreNet_test_cut_pnsr/", help='path to save models and log files')
+parser.add_argument("--save_path", type=str, default="/workspace/datasets/PReNet/logs/PreNet_test_cut_pnsr/", help='path to save models and log files')
 parser.add_argument("--save_freq",type=int,default=200,help='save intermediate model')
-parser.add_argument("--data_path",type=str, default="/workspace/data/num_Train/",help='path to training data')
+parser.add_argument("--data_path",type=str, default="/workspace/datasets/num_Train/",help='path to training datasets')
 parser.add_argument("--use_gpu", type=bool, default=True, help='use GPU or not')
 parser.add_argument("--gpu_id", type=str, default="0", help='GPU id')
 parser.add_argument("--recurrent_iter", type=int, default=6, help='number of recursive stages')
@@ -69,7 +69,7 @@ def main():
     # Optimizer
     optimizer = optim.Adam(model.parameters(), lr=opt.lr)
     scheduler = MultiStepLR(optimizer, milestones=opt.milestone, gamma=0.2)  # learning rates
-    initial_epoch = 1
+    initial_epoch = 0
     # load the lastest model
     if initial_epoch > 0:
         print('resuming by loading epoch ')
@@ -125,7 +125,7 @@ if __name__ == "__main__":
         elif opt.data_path.find('Rain12600') != -1:
             prepare_data_Rain12600(data_path=opt.data_path, patch_size=100, stride=100)
         else:
-            print('unkown datasets: please define prepare data function in DerainDataset.py')
+            print('unkown datasets: please define prepare datasets function in DerainDataset.py')
 
 
     main()

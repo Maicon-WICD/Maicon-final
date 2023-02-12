@@ -51,14 +51,15 @@ class CustomDataset(Dataset):
     def __init__(self, data_path):
         self.target_path = os.path.join(data_path, 'Denoised')
         self.input_path = os.path.join(data_path, 'Noised')
-        self.filename_list = os.listdir(self.target_path)
+        self.target_filename_list = os.listdir(self.target_path)
+        self.input_filename_list = os.listdir(self.input_path)
 
     def __len__(self):
-        return len(self.filename_list)
+        return len(self.target_filename_list)
 
     def __getitem__(self, idx):
-        t_path = os.path.join(self.target_path, self.filename_list[idx])
-        i_path = os.path.join(self.input_path, self.filename_list[idx])
+        t_path = os.path.join(self.target_path, self.target_filename_list[idx])
+        i_path = os.path.join(self.input_path, self.input_filename_list[idx])
         # target
         target = cv2.imread(t_path)
         b, g, r = cv2.split(target)

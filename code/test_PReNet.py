@@ -32,7 +32,7 @@ def main():
     print_network(model)
     if opt.use_GPU:
         model = model.cuda()
-    model.load_state_dict(torch.load(os.path.join(opt.logdir, 'net_iter35.pth')))
+    model.load_state_dict(torch.load(os.path.join(opt.logdir, 'net_latest.pth')))
     model.eval()
 
     time_test = 0
