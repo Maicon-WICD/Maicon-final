@@ -50,9 +50,9 @@ PSNR (Peak Singal-to-Noise Ratio)
   - 학습 과정에서 hsv 채널 분석 중 값이 편향됨을 확인하여 이를 fix하기위해 hsv shift 진행
 - Normaliziation
   - Output 이미지의 히스토그램을 분석하여 이미지 정규화 진행
-  - 이미지의 노이즈가 특정 영역에 몰려 있는 경우 화질을 개선하기 위해 주로 사용됌
+  - 이미지의 노이즈가 특정 영역에 몰려 있는 경우 화질을 개선하기 위해 주로 사용됨
 - 빗방울 제거
-  - Output 데이터를 분석한 결과 빗방울과 나머지 배경과 비교하였을 때 빗방울이 높은 밝기를 갖고 있어 특정값 이상의 값만 밝기를 낮춤
+  - Output 데이터를 분석한 결과 빗방울과 나머지 배경을 비교하였을 때 빗방울이 높은 밝기를 갖고 있어 특정값 이상의 값만 밝기를 낮춤
 ---
 # 코드 내용
 
@@ -112,7 +112,7 @@ PSNR (Peak Singal-to-Noise Ratio)
 
 # 실행 환경 설정
 
-  - 소스 코드 및 conda 환경 설치
+  - 실행 환경 
     ```
     conda create -n wicd python=3.9.12
     conda activate wicd
