@@ -58,32 +58,32 @@ PSNR (Peak Singal-to-Noise Ratio)
 
 ### 핵심 파일 설명
 
-- EDA 코드 : eda_process/data_eda.ipynb
-- 데이터셋 구축 및 전처리 코드 : code/CustomDataset.py
-- 학습 코드 : code/train_PReNet.py
-  - 사용법 : python train_PReNet.py --preprocess False --save_path $MODEL_PATH --data_path $DATA_PATH
-- 추론 코드 : code/test_PReNet.py
-  - 사용법 : test_PReNet.py --logdir $MODEL_PATH --data_path $TEST_DIR --save_path $RESULT_SAVE_DIR
-- 시각화 코드 : eda_process/image_diff.ipynb
-- 후처리 코드 : eda_process/Postprocess.ipynb
-- 앙상블 코드 : eda_process/Ensemble.ipynb
+- EDA 코드 : `eda_process/data_eda.ipynb`
+- 데이터셋 구축 및 전처리 코드 : `code/CustomDataset.py`
+- 학습 코드 : `code/train_PReNet.py`
+  - 사용법 : `python code/train_PReNet.py --preprocess False --save_path $MODEL_PATH --data_path $DATA_PATH`
+- 추론 코드 : `code/test_PReNet.py`
+  - 사용법 : `python code/test_PReNet.py --logdir $MODEL_PATH --data_path $TEST_DIR --save_path $RESULT_SAVE_DIR`
+- 시각화 코드 : `eda_process/image_diff.ipynb`
+- 후처리 코드 : `eda_process/Postprocess.ipynb`
+- 앙상블 코드 : `eda_process/Ensemble.ipynb`
 
 ### 학습 과정 설명
 1. EDA 코드를 활용하여 데이터 분석
 2. PReNet 학습
-  - python code/train_PReNet.py --preprocess False --save_path $MODEL_PATH --data_path $DATA_PATH
+  - `python code/train_PReNet.py --preprocess False --save_path $MODEL_PATH --data_path $DATA_PATH`
 3. 학습 중 저장된 모델(pth)로 test데이터 추론 및 시각화
-  - python code/test_PReNet.py --logdir $MODEL_PATH --data_path 
-  - eda_process/image_diff.ipynb 활용
+  - `python code/test_PReNet.py --logdir $MODEL_PATH --data_path`
+  - `eda_process/image_diff.ipynb` 활용
 4. 추론 결과 분석 및 후처리
-  - eda_process/Postprocess.ipynb 활용
+  - `da_process/Postprocess.ipynb` 활용
 5. 결과물 앙상블
-  - eda_process/Ensemble.ipynb 활용
+  - `eda_process/Ensemble.ipynb` 활용
 
 ---
 
 # 학습 결과 및 검증
-- Ansemble한 Pretrained model은 /workspace/Final_Submission/PReNet/logs/real/ 내에 모두 존재
+- Ansemble한 Pretrained model은 `/workspace/Final_Submission/PReNet/logs/real/` 내에 모두 존재
   - net_iter1601.pth : SSIMLoss, batch_size=20, iteration=1600를 사용한 모델
     - 결과 : results/ee1
   - net_iter2001.pth : SSIMLoss, batch_size=20, iteration=2000를 사용한 모델
@@ -97,7 +97,7 @@ PSNR (Peak Singal-to-Noise Ratio)
 - Model Ensemble
   - 위 결과 3가지 모델에 대하여 앙상블 진행
   - soft ensemble
-  - Ensemble.ipynb 참고
+  - `Ensemble.ipynb` 참고
 
 ### using module
 - opencv-python=4.6.0.66
