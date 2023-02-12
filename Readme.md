@@ -15,20 +15,22 @@ PSNR (Peak Singal-to-Noise Ratio)
 
 # 학습 내용
 ### 모델 선정
-- Transformer 계열(Restormer) -> Resnet계열 모델 변경
-  - 참고 깃허브
-    - [Restormer](https://github.com/swz30/Restormer)
-    - [PRENet](https://github.com/csdwren/PReNet)
-  - paper with code 를 보면 Sota모델(Transformer계열)과 이전 모델의 성능차이가 그닥 커 보이지 않았음
-  - 데이터 셋 양이 적어 트렌스포머 계열에 맞지않음
-  - 딥러닝이 아닌 머신러닝으로도 준수한 성능이 나올 정도의 Task였음
-  - 다양한 실험을 적용해보기 위해 학습 속도가 빠르고 간편한 모델을 선정
+- 베이스라인 (Transformer 계열([Restormer](https://github.com/swz30/Restormer)))
+  - 데이터 셋 양이 적어 트렌스포머 계열 모델학습에 맞지않음
+  - 모델 학습 특성상 시간이 너무 오래걸림
+    - 대회기간이 하루밖에 되지않기 때문에 시간적 제약이 존재
+
+- 베이스라인을 사용하지 않고 Resnet계열 모델([PRENet](https://github.com/csdwren/PReNet))로 변경
+  - paper with code 를 보면 Sota모델(Transformer계열)과 이전 모델의 성능차이가 크게 커 보이지 않았음
+  - 학습 속도가 빠르고 간편한 모델을 선정
+    - 딥러닝이 아닌 머신러닝으로도 준수한 성능이 나올 정도의 Task
+    - 다양한 실험을 적용해보기 위해 
   
 
 ### AMP 적용
 - 학습 속도 향상을 위해 AMP 적용
 
-### 학습 과정
+### 학습
 - resize
   - 학습 시 이미지를 256x256으로 리사이즈
   - 추론시에는 512x512사이즈로 추론 (Interpolation이 큰 영향을 준다고 생각함)
@@ -50,7 +52,33 @@ PSNR (Peak Singal-to-Noise Ratio)
   - Output 이미지의 히스토그램을 분석하여 이미지 정규화 진행
   - 이미지의 노이즈가 특정 영역에 몰려 있는 경우 화질을 개선하기 위해 주로 사용됌
 - 빗방울 제거
-  - 
+
+---
+# 코드 내용
+
+### 핵심 파일 설명
+
+- EDA 코드 : eda_process/data_eda.ipynb
+- 데이터셋 구축 및 전처리 코드 : code/CustomDataset.py
+- 학습 코드 : code/train_PReNet.py
+  - 사용법 : python train_PReNet.py --preprocess False --save_path $MODEL_PATH --data_path $DATA_PATH
+- 추론 코드 : code/test_PReNet.py
+  - 사용법 : test_PReNet.py --logdir $MODEL_PATH --data_path $TEST_DIR --save_path $RESULT_SAVE_DIR
+- 시각화 코드 : eda_process/image_diff.ipynb
+- 후처리 코드 : eda_process/Postprocess.ipynb
+- 앙상블 코드 : eda_process/Ensemble.ipynb
+
+### 학습 과정 설명
+1. EDA 코드를 활용하여 데이터 분석
+2. PReNet 학습
+  - python code/train_PReNet.py --preprocess False --save_path $MODEL_PATH --data_path $DATA_PATH
+3. 학습 중 저장된 모델(pth)로 test데이터 추론 및 시각화
+  - python code/test_PReNet.py --logdir $MODEL_PATH --data_path 
+  - eda_process/image_diff.ipynb 활용
+4. 추론 결과 분석 및 후처리
+  - eda_process/Postprocess.ipynb 활용
+5. 결과물 앙상블
+  - eda_process/Ensemble.ipynb 활용
 
 ---
 
@@ -64,8 +92,8 @@ PSNR (Peak Singal-to-Noise Ratio)
   - net_iter3001.pth : SSIMLoss, batch_size=20, iteration=3000를 사용한 모델
     - 결과 : results/3000pth_norm
     - 모델을 통해 나온 결과에 Normalization 적용 (Postprocess.ipynb 참고)
-- Model 추론 방법
-  - test_PReNet.py --logdir $MODEL_PATH --data_path $TEST_DIR --save_path $RESULT_SAVE_DIR
+<!-- - Model 추론 방법
+  - test_PReNet.py --logdir $MODEL_PATH --data_path $TEST_DIR --save_path $RESULT_SAVE_DIR -->
 - Model Ensemble
   - 위 결과 3가지 모델에 대하여 앙상블 진행
   - soft ensemble
