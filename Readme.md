@@ -15,8 +15,8 @@ PSNR (Peak Singal-to-Noise Ratio)
 
 # 데이터셋
 위성으로 촬영한 안개, 비 등의 노이즈가 추가된 이미지 데이터셋 
-RGB 분포중 초록색, 연갈색의 비중이 매우 높음
-Image Size (512x512)
+- RGB 분포중 초록색, 연갈색의 비중이 매우 높음
+- Image Size (512x512)
 
 ---
 
