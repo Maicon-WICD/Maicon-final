@@ -99,6 +99,8 @@ PSNR (Peak Singal-to-Noise Ratio)
   - soft ensemble
   - `Ensemble.ipynb` 참고
 
+---
+
 ### using module
 - opencv-python=4.6.0.66
 - pytorch=1.12.0
@@ -108,6 +110,41 @@ PSNR (Peak Singal-to-Noise Ratio)
 - python=3.9.12        
 - numpy=1.21.5    
 
+# 실행 환경 설정
+
+  - 소스 코드 및 conda 환경 설치
+    ```
+    conda create -n wicd python=3.9.12
+    conda activate wicd
+    conda install numpy=1.21.5
+    conda install pytorch==1.12.0 torchvision==0.13.0 torchaudio==0.12.0 cudatoolkit=11.6 -c pytorch -c conda-forge
+    pip install opencv-python==4.6.0.66
+    pip install scikit-image==0.19.2
+    pip install scikit-learn==1.0.2
+    pip install h5py
+    pip install albumentations
+    pip install GPUtil
+    ```
+# 학습 및 테스트 실행 방법
+
+- 데이터셋 폴더 생성 및 파일 넣기
+  - datasets 폴더 생성
+  - datasets 폴더 내에 Noised 및 Denoised 폴더 생성
+  - Noised와 Denoised 폴더에 input 데이터 및 target 데이터를 넣기
+
+- 학습 한 모델 저장소 생성
+  - logs 폴더 생성
+  - logs 폴더 내에 PReNet 폴더 생성
+
+- 학습 코드 실행
+  ```
+   sh train_PReNet.sh
+  ```
+
+  - 테스트 코드 실행
+  ```
+  sh test_PReNet.sh
+  ```
 ---
 
 # 추가적인 시도
