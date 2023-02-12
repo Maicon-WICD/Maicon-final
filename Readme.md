@@ -125,6 +125,15 @@ PSNR (Peak Singal-to-Noise Ratio)
     pip install albumentations
     pip install GPUtil
     ```
+    ### using module
+  - opencv-python=4.6.0.66
+  - pytorch=1.12.0
+  - torchvision=0.13.0 
+  - scikit-image=0.19.2
+  - scikit-learn=1.0.2         
+  - python=3.9.12        
+  - numpy=1.21.5   
+ 
 # 학습 및 테스트 실행 방법
 
 - 데이터셋 폴더 생성 및 파일 넣기
